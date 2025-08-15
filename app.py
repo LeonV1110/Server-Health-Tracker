@@ -115,8 +115,8 @@ def checkDB(connection):
   `stats` (
     `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
     `server_id` int(11) NOT NULL,
-    `cpu` int(11) NOT NULL,
-    `memory` int(11) NOT NULL,
+    `cpu` int(13) NOT NULL,
+    `memory` int(13) NOT NULL,
     PRIMARY KEY (`time`, `server_id`)
   )"""
         cursor.execute(SQL)
