@@ -7,7 +7,7 @@ import pymysql
 
 
 config = configparser.ConfigParser()
-config.read('config.ini')
+config.read('server-health-tracker/config.ini')
 
 DATABASEUSER = config['DATABASE']['DATABASE_USERNAME']
 DATABASEPSW = config['DATABASE']['DATABASE_PASSWORD']
