@@ -9,7 +9,7 @@ import requests
 import pymysql
 
 # Import configs
-config = configparser.ConfigParser()
+config = configparser.ConfigParser(interpolation=None)
 config.read('server-health-tracker/config.ini')
 
 DATABASEUSER = config['DATABASE']['DATABASE_USERNAME']
@@ -75,7 +75,7 @@ def main(connection = None):
                 logger.info("Database reconnected.")
         except pymysql.OperationalError as e:
             logger.error(f'Reconnecting failed: {e}')
-        
+
         for server_num, server_url in servers.items():
             try:
                 logger.info(f'Polling server {server_num}')
@@ -93,7 +93,7 @@ def main(connection = None):
                     logger.info(f'memory: {memory}')
                     logger.info(f'cpu: {cpu}')
 
-                    SQL = "INSERT INTO `stats` (`time`, `server_id`, `cpu`, `memory`) VALUES (%s, %s, %s, %s)" #TODO
+                    SQL = "INSERT INTO `stats` (`time`, `server_id`, `cpu`, `memory`) VALUES (%s, %s, %s, %s)"
                     VALUES = (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), server_num, cpu, memory)
                     with connection.cursor() as cursor:
                         cursor.execute(SQL, VALUES)
@@ -116,7 +116,7 @@ def checkDB(connection):
     `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
     `server_id` int(11) NOT NULL,
     `cpu` int(13) NOT NULL,
-    `memory` int(13) NOT NULL,
+    `memory` bigint(13) NOT NULL,
     PRIMARY KEY (`time`, `server_id`)
   )"""
         cursor.execute(SQL)
