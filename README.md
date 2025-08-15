@@ -14,16 +14,20 @@ On a box on PSG.
 
 ## Config guide
 **Database**
+
 Fill in all the fields, While this should work in an existing database, I recommend seting up a new database. This can be done with the same app, just means they cannot interfere with eachother. I also recommend setting up a dedicated username and psw for this app, restricting access to only the appropiate database.
 
 **Settings**
+
 the interval setting is how many seconds the app will wait before polling the API again. the default 10s is the same as how often squadJS will log the TPS
 
 **API**
+
 To get the API key head to the homepage, here select `Security Control` from the toolbar and create an API key in the top right. Clicking on the key once will reveal it, clicking again will copy.
 The base URL should be the same for any server provided you're with psg, if you're with a different provider using wisp, replace the part before `/api` with the link to your pannel.
 
 **ServerID and Server_Number**
+
 Make sure each entry appear in the same order in both SERVERID and SERVER_NUMBER!
 
 All Entries in SERVERID are the ID on the pannel, to get this head to the server on your pannel, and look at the URL. Your serverID will be the last part. `https://control.psg-hosting.com/server/SERVERID`
