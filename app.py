@@ -65,8 +65,7 @@ def connectDB():
                              user = DATABASEUSER, password=DATABASEPSW, database=DATABASENAME)
 
 
-def main():
-    connection = None
+def main(connection = None):
     while True:
         #reconnect to DB if needed
         try: 
@@ -113,6 +112,10 @@ def main():
 
 if __name__ == "__main__":
     try: 
+        connection = connectDB()
         main()
+    except pymysql.OperationalError as e:
+        logger.error(f"Intital database connection went wrong, check your config")
+        logger.debug(str(e), exc_info=True)
     except Exception as e:
         logger.error(f"Catastrofic error: {e}", exc_info=True)
