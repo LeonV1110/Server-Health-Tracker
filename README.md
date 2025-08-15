@@ -7,7 +7,7 @@ It then stores this info into a simple mysql compatable database (The MariaDB PS
 
 On a box on PSG.
 1. Ask PSG to spin up a python instance for you.
-2. Head to the file manager and select the git clone button on the top right and fill in `https://github.com/LeonV1110/Server-Health-Tracker.git`
+2. Head to the file manager and select the git clone button on the top right and fill in `https://github.com/LeonV1110/Server-Health-Tracker.git` and for branch fill in `main`
 3. Head to the Startup Parameters and fill in `server-health-tracker/app.py` for App py file, and `server-health-tracker/requirements.txt` for Requirements file.
 4. Head back to the file manager, go into the server-health-tracker folder and open the config.ini file. see below for config guide.
 5. Start the python instance
