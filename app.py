@@ -105,15 +105,28 @@ def main(connection = None):
 
             except requests.RequestException as e:
                 logger.error(f"Request failed: {e}")
-            
+
         logger.info(f'Waiting {INTERVAL}s')
         time.sleep(INTERVAL)
 
+def checkDB(connection):
+    with connection.cursor() as cursor:
+        SQL = """CREATE TABLE IF NOT EXISTS
+  `stats` (
+    `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+    `server_id` int(11) NOT NULL,
+    `cpu` int(11) NOT NULL,
+    `memory` int(11) NOT NULL,
+    PRIMARY KEY (`time`, `server_id`)
+  )"""
+        cursor.execute(SQL)
+        connection.commit()
 
 if __name__ == "__main__":
-    try: 
+    try:
         connection = connectDB()
-        main()
+        checkDB(connection)
+        main(connection)
     except pymysql.OperationalError as e:
         logger.error(f"Intital database connection went wrong, check your config")
         logger.debug(str(e), exc_info=True)
