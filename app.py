@@ -75,7 +75,7 @@ def main():
                 connection = connectDB()
                 logger.info("Database reconnected.")
         except pymysql.OperationalError as e:
-            logger.error(f'Reconnecting failed: {e}', exc_info=True)
+            logger.error(f'Reconnecting failed: {e}')
         
         for server_num, server_url in servers.items():
             try:
@@ -102,10 +102,10 @@ def main():
                 else:
                     logger.info(f'Server {server_num} is not running')
             except pymysql.OperationalError as e:
-                logger.error(f'Database operation failed: {e}', exc_info=True)
+                logger.error(f'Database operation failed: {e}')
 
             except requests.RequestException as e:
-                logger.error(f"Request failed: {e}", exc_info=True)
+                logger.error(f"Request failed: {e}")
             
         logger.info(f'Waiting {INTERVAL}s')
         time.sleep(INTERVAL)
