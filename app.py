@@ -105,6 +105,8 @@ def main(connection = None):
 
             except requests.RequestException as e:
                 logger.error(f"Request failed: {e}")
+            except KeyError as e:
+                logger.error(f"No status present in response\n{data}")
 
         logger.info(f'Waiting {INTERVAL}s')
         time.sleep(INTERVAL)
